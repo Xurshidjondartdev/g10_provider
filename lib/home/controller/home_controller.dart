@@ -34,6 +34,12 @@ class HomePageController with ChangeNotifier {
     notifyListeners();
   }
 
+  void resetTime() {
+    countdown = 60;
+    _timer?.cancel();
+    notifyListeners();
+  }
+
   void incrementCounter() {
     counter++;
     notifyListeners();

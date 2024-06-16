@@ -37,6 +37,9 @@ class HomePage extends StatelessWidget {
                   onStopPressed: () {
                     homePageController.stop();
                   },
+                  onReturnPressed: () {
+                    homePageController.resetTime();
+                  },
                 ),
               ],
             );
