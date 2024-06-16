@@ -1,8 +1,8 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:g10_provider/home/controller/home_controller.dart';
+import 'package:g10_provider/home/widgets/home_increment_buttons.dart';
 import 'package:g10_provider/home/widgets/home_main_text_widget.dart';
+import 'package:g10_provider/home/widgets/home_time_buttons.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
@@ -10,7 +10,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of(context, listen: false);
+    final provider = Provider.of<HomePageController>(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
@@ -27,10 +28,24 @@ class HomePage extends StatelessWidget {
                   counter: homePageController.counter,
                   countDown: homePageController.countdown,
                 ),
+                HomeTimerButtons(
+                  onStartPressed: () {
+                    if (homePageController.index == 0) {
+                      homePageController.startCountdown();
+                    }
+                  },
+                  onStopPressed: () {
+                    homePageController.stop();
+                  },
+                ),
               ],
             );
           },
         ),
+      ),
+      floatingActionButton: HomeIncrementButtons(
+        onIncrementPressed: provider.incrementCounter,
+        onDecrementPressed: provider.decrementCounter,
       ),
     );
   }
