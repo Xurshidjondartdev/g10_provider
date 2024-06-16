@@ -1,4 +1,8 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
+import 'package:g10_provider/home/controller/home_controller.dart';
+import 'package:g10_provider/home/widgets/home_main_text_widget.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
@@ -6,7 +10,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of(context,listen: false);
+    final provider = Provider.of(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
@@ -14,30 +18,18 @@ class HomePage extends StatelessWidget {
         title: const Text('Home'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Consumer(
-              builder: (context, consumerProvider, child) {
-                return Text(
-                  (consumerProvider).toString(),
-                );
-              },
-            ),
-            Row(
+        child: Consumer<HomePageController>(
+          builder: (context, homePageController, _) {
+            return Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.stop_circle),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.not_started_rounded),
+              children: <Widget>[
+                HomeMainTextWidget(
+                  counter: homePageController.counter,
+                  countDown: homePageController.countdown,
                 ),
               ],
-            ),
-          ],
+            );
+          },
         ),
       ),
     );
