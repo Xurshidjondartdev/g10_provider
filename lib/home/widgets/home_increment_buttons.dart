@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class HomeIncrementButtons extends StatelessWidget {
   final VoidCallback onIncrementPressed;
   final VoidCallback onDecrementPressed;
-  const HomeIncrementButtons({super.key, required this.onIncrementPressed, required this.onDecrementPressed});
+  const HomeIncrementButtons({super.key, required this.onIncrementPressed, required this.onDecrementPressed,});
 
   @override
   Widget build(BuildContext context) {
